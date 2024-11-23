@@ -141,18 +141,6 @@ export class Ruleta extends Juego implements JuegoCasino{
         }
     }
 
-
-    //metodo para cambiar el valor de la apuesta
-    public cambiarValorApuesta(): void {
-        let nuevoValorApuesta : number = readlineSync.questionInt("Ingrese el valor de su apuesta: ");
-        if(nuevoValorApuesta >= this.minimoDeApuesta && nuevoValorApuesta <= this.saldoJuego){
-            this.valorApuesta = nuevoValorApuesta;
-        } else {
-            console.error("--- Valor invalido. El minimo de apuesta es de " + this.minimoDeApuesta + " y tu saldo disponible es " + this.saldoJuego + " ---");
-        }
-    }
-    
-
     //metodo para seleccionar una opcion del menu
     public seleccionarOpcion(): void {
 
