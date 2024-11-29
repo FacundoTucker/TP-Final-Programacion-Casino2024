@@ -4,7 +4,7 @@ import { Juego } from "./Juego";
 import { Ruleta } from "./Ruleta";
 import { Usuario } from "./Usuario";
 import { Tragamoneda1} from "./Tragamoneda1";
-
+import { Raspadita } from "./Raspadita";
 export class Casino {
 
     //atributos
@@ -85,7 +85,7 @@ export class Casino {
         console.log("2 - Jugar Ruleta.");
         console.log("3 - Jugar Tragamonedas 1.");
         console.log("4 - Jugar Tragamonedas 2.");
-        console.log("5 - Jugar Maquinax");
+        console.log("5 - Jugar Raspadita");
         console.log("--------------------------");
         console.log("6 - Retirar créditos.");
         console.log("--------------------------");
@@ -109,13 +109,13 @@ export class Casino {
                     this.ejecutarJuego(this.juegos[0], this.usuario[0]);
                     break;
                 case 3:
-                    this.ejecutarJuego(this.juegos[1], this.usuario[0]);
+                    this.ejecutarJuego(this.juegos[0], this.usuario[0]);
                     break;
                 case 4:
-                    this.ejecutarJuego(this.juegos[2], this.usuario[0]);
+                    this.ejecutarJuego(this.juegos[0], this.usuario[0]);
                     break;
                 case 5:
-                    console.log("¡Juego Maquinax no disponible!");
+                    this.ejecutarJuego(this.juegos[1], this.usuario[0])
                     break;
                 case 6:
                     this.realizarRetiro();
