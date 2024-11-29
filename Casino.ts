@@ -3,7 +3,7 @@ import * as readlineSync from "readline-sync";
 import { Juego } from "./Juego";
 import { Ruleta } from "./Ruleta";
 import { Usuario } from "./Usuario";
-import { Tragamoneda1} from "./Tragamoneda1";
+//import { Tragamoneda1} from "./Tragamoneda1";
 import { Raspadita } from "./Raspadita";
 export class Casino {
 

@@ -1,5 +1,5 @@
 import * as readlineSync from "readline-sync";
-
+//import { Tragamoneda1} from "./Tragamoneda1";
 import { JuegoCasino } from "./JuegoCasino";
 import { Usuario } from "./Usuario";
 
