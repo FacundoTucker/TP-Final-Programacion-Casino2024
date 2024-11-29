@@ -33,17 +33,17 @@ export class Raspadita extends Juego implements JuegoCasino{
         }
     }
     public contarCaracteres(cadena: string, caracterBuscado: string): void {
-        let contador = 0;
-
-        cadena.split('').forEach(function(caracter) {
-            if (caracter === caracterBuscado) {
-                contador++;
-            }
-        console.log(contador)
-        this.determinarApuestaPalos(contador)
-        });
+         let contador = 0;         
+    for (const caracter of cadena) {
+        if (caracter === caracterBuscado) {
+            contador++;
+        }
     }
-    public cadenaAleatoria(caracteresPermitidos: string): void {
+    console.log(contador)
+    // this.determinarApuestaPalos(contador)
+    }
+    public cadenaAleatoria(caracterBuscado: string): void {
+        let caracteresPermitidos:string="♠♥♦♣"
         let resultado = '';
         for (let i = 0; i < 8 ; i++) {
             let indice = Math.floor(Math.random() * caracteresPermitidos.length);
@@ -51,7 +51,7 @@ export class Raspadita extends Juego implements JuegoCasino{
         }
         console.log('█ █ █ █ █ █ █ █')
         console.log(resultado)
-        console.log (this.contarCaracteres(resultado,caracteresPermitidos))
+        this.contarCaracteres(resultado,caracterBuscado);
         }
 
     //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
@@ -84,9 +84,11 @@ export class Raspadita extends Juego implements JuegoCasino{
                 case 3:
                     caracteres = '♦';
                     this.cadenaAleatoria(caracteres);
+                    break;
                 case 4:
                     caracteres = '♣';
-                    this.cadenaAleatoria(caracteres);                
+                    this.cadenaAleatoria(caracteres);     
+                    break;           
                 case 5:
                     this.cambiarValorApuesta();
                     break;
