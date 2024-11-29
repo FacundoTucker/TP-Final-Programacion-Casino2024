@@ -5,5 +5,5 @@ export interface JuegoCasino {
     mostrarMenuJuego(): void;
 
     //todos los juegos deberian determinar sus apuestas ganadas y perdidas
-    determinarGananciaPerdida(gano: boolean, multiplicador : number, resultado? : number): void;
+    determinarGananciaPerdida(gano: boolean, multiplicador : number): void;
 }

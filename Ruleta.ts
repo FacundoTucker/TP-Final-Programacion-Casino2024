@@ -12,23 +12,6 @@ export class Ruleta extends Juego implements JuegoCasino{
 
     //metodos
 
-    //menu principal de la ruleta
-    public mostrarMenuJuego(): void{
-        console.log("         Seccion RULETA ");
-        console.log("-------------------------------------")
-        console.log("1 - Jugar al NUMERO.")
-        console.log("2 - Jugar al color ROJO")
-        console.log("3 - Jugar al color NEGRO")
-        console.log("4 - Jugar al PAR")
-        console.log("5 - Jugar al IMPAR")
-        console.log("-------------------------------------")
-        console.log("6 - Cambiar valor de apuesta.")
-        console.log("-------------------------------------")
-        console.log("0 - Volver")
-        console.log("-------------------------------------")
-        console.log("Creditos: " + this.getSaldoJuego() + " --- Apuesta: " + this.getValorApuesta());
-    }
-
     //menu especifico al momento de jugar a un numero
     public jugarNumero(): void{
         console.log("        --- Jugando al NUMERO ---")
@@ -52,93 +35,103 @@ export class Ruleta extends Juego implements JuegoCasino{
 
     //metodo que da un numero aleatorio
     public obtenerNumeroAleatorio() : number {
-        return Math.floor(Math.random() * 37);
+        let resultado : number = Math.floor(Math.random() * 37)
+        console.log("--- El numero es el " + resultado + " ---" )
+        return resultado;
+    }
+
+    //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
+    public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
+        if (ganoOPerdio === true) {
+            console.log(`--- ¡Ganaste! ---`);
+            this.saldoJuego -= this.valorApuesta;
+            this.saldoJuego += this.valorApuesta * multiplicador;
+        } else {
+            console.log(`--- Perdiste ---`);
+            this.saldoJuego -= this.valorApuesta;
+        }
     }
 
     //metodo especifico para apostar al numero
     public realizarApuestaNumero(numeroAJugar: number): void {
         let resultado = this.obtenerNumeroAleatorio();
-        let esGanador = this.determinarApuestaNumero(numeroAJugar, resultado);
+        //let esGanador = this.determinarApuestaNumero(numeroAJugar, resultado);
 
-        if(esGanador){
-            this.determinarGananciaPerdida(esGanador, resultado, 35)
-        } else {
-            this.determinarGananciaPerdida(esGanador, resultado, 0);
-        }
-    }
-
-    //metodo especifico que retorna si ganas o no a la hora de apostar al numero
-    public determinarApuestaNumero(numeroAJugar : number, resultado : number): boolean{
         if(numeroAJugar === resultado){
-            return true;
+            this.determinarGananciaPerdida(true, 35)
         } else {
-            return false;
-        }
-    }
-
-    //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
-    public determinarGananciaPerdida(ganoOPerdio: boolean, resultado : number, multiplicador : number): void {
-        if (ganoOPerdio === true) {
-            console.log(`--- ¡Ganaste! --- El numero es el ${resultado} ---`);
-            this.saldoJuego -= this.valorApuesta;
-            this.saldoJuego += this.valorApuesta * multiplicador;
-        } else {
-            console.log(`--- Perdiste --- El numero es el ${resultado} ---`);
-            this.saldoJuego -= this.valorApuesta;
+            this.determinarGananciaPerdida(false, 0);
         }
     }
     
     //apuestas simples 
     public jugarRojo() : void {
-        let resultado : number = this.obtenerNumeroAleatorio();
         if (this.saldoJuego < this.valorApuesta) {
             console.error("--- No tienes suficiente saldo para esta apuesta ---");
             return;
         }
+        let resultado : number = this.obtenerNumeroAleatorio();
         if (this.numerosRojos.includes(resultado)) {
-            this.determinarGananciaPerdida(true, resultado, 2);
+            this.determinarGananciaPerdida(true, 2);
         } else {
-            this.determinarGananciaPerdida(false, resultado, 0); 
+            this.determinarGananciaPerdida(false,0); 
         }      
     }
 
     public jugarNegro(): void {
-        let resultado : number = this.obtenerNumeroAleatorio();
         if (this.saldoJuego < this.valorApuesta) {
             console.error("--- No tienes suficiente saldo para esta apuesta ---");
             return;
         }
+        let resultado : number = this.obtenerNumeroAleatorio();
         if (this.numerosNegros.includes(resultado)) {
-            this.determinarGananciaPerdida(true, resultado, 2);
+            this.determinarGananciaPerdida(true, 2);
         } else {
-            this.determinarGananciaPerdida(false, resultado, 0); 
+            this.determinarGananciaPerdida(false, 0); 
         }
     }
 
     public jugarPar(): void {
-        let resultado : number = this.obtenerNumeroAleatorio();
         if (this.saldoJuego < this.valorApuesta) {
             console.error("--- No tienes suficiente saldo para esta apuesta ---");
             return;
         }
+        let resultado : number = this.obtenerNumeroAleatorio();
         if (resultado % 2 === 0) {
-            this.determinarGananciaPerdida(true, resultado, 2);
+            this.determinarGananciaPerdida(true, 2);
         } else {
-            this.determinarGananciaPerdida(false, resultado, 0)
+            this.determinarGananciaPerdida(false, 0)
         }  
     }
 
     public jugarImpar(): void {
-        let resultado : number = this.obtenerNumeroAleatorio();
         if (this.saldoJuego < this.valorApuesta) {
             console.error("--- No tienes suficiente saldo para esta apuesta ---");
             return;
         }
+        let resultado : number = this.obtenerNumeroAleatorio();
         if (resultado % 2 !== 0) {
-            this.determinarGananciaPerdida(true, resultado, 2)
+            this.determinarGananciaPerdida(true, 2)
         } else {
-            this.determinarGananciaPerdida(false, resultado, 0);
+            this.determinarGananciaPerdida(false, 0);
         }
+    }
+
+    //menu principal de la ruleta
+    public mostrarMenuJuego(): void{
+        console.log("         Seccion RULETA ");
+        console.log("-------------------------------------")
+        console.log("1 - Jugar al NUMERO.")
+        console.log("2 - Jugar al color ROJO")
+        console.log("3 - Jugar al color NEGRO")
+        console.log("4 - Jugar al PAR")
+        console.log("5 - Jugar al IMPAR")
+        console.log("-------------------------------------")
+        console.log("6 - Cambiar valor de apuesta.")
+        console.log("-------------------------------------")
+        console.log("0 - Volver")
+        console.log("-------------------------------------")
+        console.log("Creditos: " + this.getSaldoJuego() + " --- Apuesta: " + this.getValorApuesta());
     }
 
     //metodo para seleccionar una opcion del menu
@@ -179,7 +172,7 @@ export class Ruleta extends Juego implements JuegoCasino{
 
     }
     
-
+    //metodo abstracto jugar
     public jugar(usuario : Usuario): void {
 
         this.saldoJuego = usuario.getCreditos(); // obtenemos el saldo del usuario
