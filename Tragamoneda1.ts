@@ -5,7 +5,7 @@ import { Juego } from "./Juego";
 import { Usuario } from "./Usuario";
 import { Casino } from "./Casino";
 
-export class tragamoneda1 extends Juego implements Casino{
+export class tragamoneda1 extends Juego implements JuegoCasino{
      //atributos
      protected minimoDeApuesta : number = 50
      protected valorApuesta: number = this.minimoDeApuesta;
