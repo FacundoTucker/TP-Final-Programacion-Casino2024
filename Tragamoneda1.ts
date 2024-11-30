@@ -9,7 +9,7 @@ export class tragamoneda1 extends Juego implements JuegoCasino{
      //atributos
      protected minimoDeApuesta : number = 50
      protected valorApuesta: number = this.minimoDeApuesta;
-    protected simbolo = ["🍒", "🍋", "🍉", "🍊", "🍇"];
+     private simbolo = ["🍒", "🍋", "🍉"];
     
 
 // Función para girar los carretes
@@ -26,6 +26,43 @@ public determinarApuesta(carrete: string[]): boolean {
     return carrete[0] === carrete[1] && carrete[1] === carrete[2];
 }
 
+//apuestas 
+public jugarUno() : void {
+    if (this.saldoJuego < this.valorApuesta) {
+        console.error("--- No tienes suficiente saldo para esta apuesta ---");
+        return;
+    }
+    if (this.determinarApuesta) {
+        this.determinarGananciaPerdida(true, 50);
+    } else {
+        this.determinarGananciaPerdida(false,0); 
+    }      
+}
+
+public jugarDos() : void {
+    if (this.saldoJuego < this.valorApuesta) {
+        console.error("--- No tienes suficiente saldo para esta apuesta ---");
+        return;
+    }
+    if (this.determinarApuesta) {
+        this.determinarGananciaPerdida(true, 100);
+    } else {
+        this.determinarGananciaPerdida(false,0); 
+    }      
+}
+
+public jugarTres() : void {
+    if (this.saldoJuego < this.valorApuesta) {
+        console.error("--- No tienes suficiente saldo para esta apuesta ---");
+        return;
+    }
+    if (this.determinarApuesta) {
+        this.determinarGananciaPerdida(true, 200);
+    } else {
+        this.determinarGananciaPerdida(false,0); 
+    }      
+}
+
 // menu
 public mostrarMenuJuego(): void{
     console.log("         Bienvenidos!     ");
@@ -33,9 +70,8 @@ public mostrarMenuJuego(): void{
     console.log("1 - Jugar  $50  ")
     console.log("2 - Jugar 	$100  ")
     console.log("3 - Jugar  $200  ")
-    console.log("4 - Jugar  $300 ")
     console.log("-------------------------------------")
-    console.log("5 - Cambiar valor de apuesta.")
+    console.log("4 - Cambiar valor de apuesta.")
     console.log("-------------------------------------")
     console.log("0 - Volver")
     console.log("-------------------------------------")
@@ -43,23 +79,19 @@ public mostrarMenuJuego(): void{
 }     
 
 public seleccionarOpcion(): void {
-    // Simulación de la elección del jugador (se puede cambiar a interactividad real en el navegador o con prompts)
-    let opcion = Math.floor(Math.random() * 3) + 1;  // Simulamos que el jugador elige aleatoriamente entre 1 y 3
-
+    let opcion: number = readlineSync.questionInt("Elige una opcion: "); //pedimos que elijan una opcion
+    if(opcion !== 0){
     switch (opcion) {
         case 1:
-            opcion = 50;
+            this.jugarUno();
             break;
         case 2:
-            opcion = 100;
+            this.jugarDos();
             break;
         case 3:
-            opcion = 200;
+            this.jugarTres();
             break;
         case 4:
-            opcion = 300;
-            break;
-        case 5:
             this.cambiarValorApuesta();
             break;
             default:
@@ -68,19 +100,21 @@ public seleccionarOpcion(): void {
 
         this.mostrarMenuJuego();
         this.seleccionarOpcion();
-
+    }
+    else {
+        console.log("--- Volviendo al menu principal ---");
+    }
 }
 
-
-
-// Función para calcular las ganancias dependiendo de la apuesta
+/*
+//Función para calcular las ganancias dependiendo de la apuesta
 public calcularGanancia(apuesta: number, carrete: string[]): number {
     if (this.determinarApuesta(carrete)) {
-        // Por ejemplo, si se obtiene una combinación ganadora, se duplica la apuesta
-        return apuesta * 2;  // El jugador recibe el doble de su apuesta
+        return apuesta * 2;   // Por ejemplo, si se obtiene una combinación ganadora, se duplica la apuesta
+                // El jugador recibe el doble de su apuesta
     }
     return 0; // No hay ganancia si no hay combinación ganadora
-}
+}*/
 
 public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
      if (ganoOPerdio === true) {
@@ -112,8 +146,3 @@ public jugar(usuario : Usuario): void {
         
     }
 }
-
-
-//jugar();
-// Ejecutar el tragamonedas
-// jugar()
