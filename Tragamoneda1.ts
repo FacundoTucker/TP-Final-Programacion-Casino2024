@@ -10,9 +10,9 @@ export class tragamoneda1 extends Juego implements JuegoCasino{
      protected minimoDeApuesta : number = 50
      protected valorApuesta: number = this.minimoDeApuesta;
      private simbolo = ["🍒", "🍋", "🍉"];
-    
+   
 
-// Función para girar los carretes
+// metodo para girar los carretes
 public girarCarretes(): string[] {
     let carrete1 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
     let carrete2 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
@@ -26,50 +26,28 @@ public determinarApuesta(carrete: string[]): boolean {
     return carrete[0] === carrete[1] && carrete[1] === carrete[2];
 }
 
-//apuestas 
-public jugarUno() : void {
+// metodo apuesta  
+public jugarApuesta() : void {
     if (this.saldoJuego < this.valorApuesta) {
         console.error("--- No tienes suficiente saldo para esta apuesta ---");
         return;
     }
-    if (this.determinarApuesta) {
-        this.determinarGananciaPerdida(true, 50);
+    let carrete = this.girarCarretes();
+    console.log(`Carrete 1: ${carrete[0]} | Carrete 2: ${carrete[1]} | Carrete 3: ${carrete[2]}`);
+    if (this.determinarApuesta(carrete)) {
+        this.determinarGananciaPerdida(true, 10);
     } else {
         this.determinarGananciaPerdida(false,0); 
     }      
 }
 
-public jugarDos() : void {
-    if (this.saldoJuego < this.valorApuesta) {
-        console.error("--- No tienes suficiente saldo para esta apuesta ---");
-        return;
-    }
-    if (this.determinarApuesta) {
-        this.determinarGananciaPerdida(true, 100);
-    } else {
-        this.determinarGananciaPerdida(false,0); 
-    }      
-}
-
-public jugarTres() : void {
-    if (this.saldoJuego < this.valorApuesta) {
-        console.error("--- No tienes suficiente saldo para esta apuesta ---");
-        return;
-    }
-    if (this.determinarApuesta) {
-        this.determinarGananciaPerdida(true, 200);
-    } else {
-        this.determinarGananciaPerdida(false,0); 
-    }      
-}
-
-// menu
+// menu principal
 public mostrarMenuJuego(): void{
-    console.log("         Bienvenidos!     ");
+    console.log("            Bienvenidos!!            ");
     console.log("-------------------------------------")
-    console.log("1 - Jugar  $50  ")
-    console.log("2 - Jugar 	$100  ")
-    console.log("3 - Jugar  $200  ")
+    console.log("1 -     Ingrese uno para jugar:      ")
+    console.log("-------------------------------------")
+    console.log("           Mucha suerte!!            ")
     console.log("-------------------------------------")
     console.log("4 - Cambiar valor de apuesta.")
     console.log("-------------------------------------")
@@ -78,18 +56,17 @@ public mostrarMenuJuego(): void{
     console.log("Creditos: " + this.getSaldoJuego() + " --- Apuesta: " + this.getValorApuesta());
 }     
 
+//metodo para seleccionar una opcion del menu
 public seleccionarOpcion(): void {
     let opcion: number = readlineSync.questionInt("Elige una opcion: "); //pedimos que elijan una opcion
     if(opcion !== 0){
     switch (opcion) {
         case 1:
-            this.jugarUno();
+            this.jugarApuesta();
             break;
         case 2:
-            this.jugarDos();
             break;
         case 3:
-            this.jugarTres();
             break;
         case 4:
             this.cambiarValorApuesta();
@@ -106,16 +83,7 @@ public seleccionarOpcion(): void {
     }
 }
 
-/*
-//Función para calcular las ganancias dependiendo de la apuesta
-public calcularGanancia(apuesta: number, carrete: string[]): number {
-    if (this.determinarApuesta(carrete)) {
-        return apuesta * 2;   // Por ejemplo, si se obtiene una combinación ganadora, se duplica la apuesta
-                // El jugador recibe el doble de su apuesta
-    }
-    return 0; // No hay ganancia si no hay combinación ganadora
-}*/
-
+//metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
 public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
      if (ganoOPerdio === true) {
         console.log(`--- ¡Ganaste! ---`);
@@ -127,22 +95,11 @@ public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): 
             }
 }
 
-// Función principal para jugar al tragamonedas
+// metodo principal para jugar al tragamonedas
 public jugar(usuario : Usuario): void {
-    console.log("¡Girando los carretes...");
-    let carrete = this.girarCarretes();
-    console.log(`Carrete 1: ${carrete[0]} | Carrete 2: ${carrete[1]} | Carrete 3: ${carrete[2]}`);
-
-    if (this.determinarApuesta(carrete)) {
-        console.log("¡Felicidades, ganaste!");
-    } else {
-        console.log("No ha habido suerte. Intenta nuevamente.");
-    }
-
-        this.saldoJuego = usuario.getCreditos(); // obtenemos el saldo del usuario
+        this.saldoJuego = usuario.getCreditos(); //obtenemos saldo de usuario 
         this.mostrarMenuJuego();
         this.seleccionarOpcion();
         usuario.setCreditos(this.saldoJuego);  // al terminar la sesion, le cargamos al usuario el dinero que tenga
-        
     }
 }
