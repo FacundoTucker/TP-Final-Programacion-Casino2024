@@ -110,7 +110,7 @@ export class Casino {
                     this.ejecutarJuego(this.juegos[0], this.usuario[0]);
                     break;
                 case 3:
-                    this.ejecutarJuego(this.juegos[0], this.usuario[0]);
+                    this.ejecutarJuego(this.juegos[2], this.usuario[0]);
                     break;
                 case 4:
                     this.ejecutarJuego(this.juegos[0], this.usuario[0]);
