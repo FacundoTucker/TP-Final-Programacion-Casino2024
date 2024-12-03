@@ -5,7 +5,7 @@ import { Juego } from "./Juego";
 import { Usuario } from "./Usuario";
 import { Casino } from "./Casino";
 
-export class tragamoneda1 extends Juego implements JuegoCasino{
+export class TragamonedaClasico extends Juego implements JuegoCasino{
      //atributos
      protected minimoDeApuesta : number = 50
      protected valorApuesta: number = this.minimoDeApuesta;
@@ -43,7 +43,7 @@ public jugarApuesta() : void {
 
 // menu principal
 public mostrarMenuJuego(): void{
-    console.log("            Bienvenidos!!            ");
+    console.log("            Bienvenidos a tragamonedas Clasico!!            ");
     console.log("-------------------------------------")
     console.log("1 -     Ingrese uno para jugar:      ")
     console.log("-------------------------------------")
