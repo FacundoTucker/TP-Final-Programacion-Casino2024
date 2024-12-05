@@ -4,12 +4,13 @@ import { JuegoCasino } from "./JuegoCasino";
 import { Juego } from "./Juego";
 import { Usuario } from "./Usuario";
 import { Casino } from "./Casino";
+import { tragamonedaPadre } from "./TragamonedaPadre";
 
-export class tragamoneda1 extends Juego implements JuegoCasino{
+export class tragamonedaClasico extends tragamonedaPadre implements Juego{
      //atributos
-     protected minimoDeApuesta : number = 50
+     protected minimoDeApuesta : number = 50;
      protected valorApuesta: number = this.minimoDeApuesta;
-     private simbolo = ["🍒", "🍋", "🍉"];
+     protected simbolo = ["🍒", "🍋", "🍉"];
    
 
 // metodo para girar los carretes
@@ -42,8 +43,8 @@ public jugarApuesta() : void {
 }
 
 // menu principal
-public mostrarMenuJuego(): void{
-    console.log("            Bienvenidos!!            ");
+public mostrarMenuJuegoClasico(): void{
+    console.log("            Bienvenidos a tragamonedas Clasico!!            ");
     console.log("-------------------------------------")
     console.log("1 -     Ingrese uno para jugar:      ")
     console.log("-------------------------------------")
@@ -75,7 +76,7 @@ public seleccionarOpcion(): void {
                 console.error("--- Opcion no valida. Intenta de nuevo ---");
         }
 
-        this.mostrarMenuJuego();
+        this.mostrarMenuJuegoClasico();
         this.seleccionarOpcion();
     }
     else {

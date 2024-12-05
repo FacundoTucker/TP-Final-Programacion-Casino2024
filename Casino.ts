@@ -3,7 +3,8 @@ import * as readlineSync from "readline-sync";
 import { Juego } from "./Juego";
 import { Ruleta } from "./Ruleta";
 import { Usuario } from "./Usuario";
-import { tragamoneda1 } from "./Tragamoneda1";
+//import { tragamonedaClasico } from "./TragamonedaClasico";
+import { tragamonedaPadre} from "./TragamonedaPadre";
 import { Raspadita } from "./Raspadita";
 
 export class Casino {
@@ -84,8 +85,8 @@ export class Casino {
         console.log("--------------------------");
         console.log("1 - Cargar créditos.");
         console.log("2 - Jugar Ruleta.");
-        console.log("3 - Jugar Tragamonedas 1.");
-        console.log("4 - Jugar Tragamonedas 2.");
+        console.log("3 - Jugar Tragamonedas");
+       // console.log("4 - Jugar Tragamonedas Diamantes.");
         console.log("5 - Jugar Raspadita");
         console.log("--------------------------");
         console.log("6 - Retirar créditos.");
@@ -113,7 +114,7 @@ export class Casino {
                     this.ejecutarJuego(this.juegos[2], this.usuario[0]);
                     break;
                 case 4:
-                    this.ejecutarJuego(this.juegos[0], this.usuario[0]);
+                    this.ejecutarJuego(this.juegos[3], this.usuario[0]);
                     break;
                 case 5:
                     this.ejecutarJuego(this.juegos[1], this.usuario[0])
