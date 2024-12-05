@@ -6,16 +6,16 @@ import { Usuario } from "./Usuario";
 export class Raspadita extends Juego implements JuegoCasino{
 
     protected minimoDeApuesta : number = 50
-    protected valorApuesta: number = this.minimoDeApuesta;
+    protected valorApuesta : number = this.minimoDeApuesta;
     
     //menu principal
     public mostrarMenuJuego(): void{
         console.log("         Seccion RASPADITA ");
         console.log("-------------------------------------")
-        console.log("1 - Jugar  ♠	Picas.")
-        console.log("2 - Jugar 	♥	Corazones.")
-        console.log("3 - Jugar ♦	Diamantes. ")
-        console.log("4 - Jugar ♣	Tréboles")
+        console.log("1 - Jugar ♠    Picas.")
+        console.log("2 - Jugar ♥    Corazones.")
+        console.log("3 - Jugar ♦    Diamantes.")
+        console.log("4 - Jugar ♣    Tréboles.")
         console.log("-------------------------------------")
         console.log("5 - Cambiar valor de apuesta.")
         console.log("-------------------------------------")
@@ -26,7 +26,7 @@ export class Raspadita extends Juego implements JuegoCasino{
 
     //metodo que retorna si ganas
     public determinarApuestaPalos(contador : number): boolean{
-        if(contador > 4){
+        if(contador > 3){
             return true;
         } else {
             return false;
@@ -39,8 +39,8 @@ export class Raspadita extends Juego implements JuegoCasino{
             contador++;
         }
     }
-    console.log(contador)
-    // this.determinarApuestaPalos(contador)
+    console.log("      Ud ha acertado "+contador+" veces \n\r\n\r")
+    this.determinarGananciaPerdida(this.determinarApuestaPalos(contador),contador);
     }
     public cadenaAleatoria(caracterBuscado: string): void {
         let caracteresPermitidos:string="♠♥♦♣"
@@ -49,27 +49,34 @@ export class Raspadita extends Juego implements JuegoCasino{
             let indice = Math.floor(Math.random() * caracteresPermitidos.length);
             resultado += caracteresPermitidos[indice];
         }
-        console.log('█ █ █ █ █ █ █ █')
-        console.log(resultado)
+        console.log("\n\r\n\r          █ █ █ █ █ █ █ █ ")
+        let opcion:string="";
+        opcion=readlineSync.question("\n\r\n\rPresione cualquier tecla para raspar \n\r\n\r");
+        if (opcion!=""){
+        console.log("      ¡Esta es su raspadita!\n\r\n\r           ",resultado)
         this.contarCaracteres(resultado,caracterBuscado);
         }
+    }
 
     //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
     public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
         if (ganoOPerdio === true) {
-            console.log(`--- ¡Ganaste! --- `);
+            console.log(`\n\r\n\r--- ¡Ganaste! --- \n\r\n\r`);
             this.saldoJuego -= this.valorApuesta;
             this.saldoJuego += this.valorApuesta * multiplicador;
         } else {
-            console.log(`--- Perdiste ---`);
+            console.log(`\n\r\n\r          --- Perdiste ---\n\r\n\r`);
             this.saldoJuego -= this.valorApuesta;
         }
     }
     
     //metodo para seleccionar una opcion del menu
     public seleccionarOpcion(): void {
-
-        let opcion: number = readlineSync.questionInt("Elige una opcion: ");
+        if (this.saldoJuego < this.valorApuesta) {
+            console.error("\n\r\n\r--- No tienes suficiente saldo para esta Raspadita \n\r           Volviendo al menu principal ---\n\r\n\r");
+            return;
+        }
+        let opcion: number = readlineSync.questionInt("\n\r\n\r Elige una opcion: \n\r\n\r");
         if(opcion !== 0){
             let caracteres:string='';
             switch (opcion) {                  
@@ -102,7 +109,6 @@ export class Raspadita extends Juego implements JuegoCasino{
         } else {
             console.log("--- Volviendo al menu principal ---");
         }
-
     }
     //atributos
     public jugar(usuario : Usuario): void {
