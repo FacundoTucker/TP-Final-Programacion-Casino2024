@@ -1,20 +1,16 @@
 import { Casino } from "./Casino";
 import { Ruleta } from "./Ruleta";
-//import { Juego } from "./Juego";
 import { Usuario } from "./Usuario"
-//import { Ruleta } from "./Ruleta";
-import { tragamonedaClasico} from "./TragamonedaClasico";
+import { TragamonedasClasico} from "./TragamonedasClasico";
 import { Raspadita } from "./Raspadita"
-//import { tragamonedaPadre } from "./TragamonedaPadre";
-import { tragamonedaDiamante } from "./TragamonedaDiamante";
-// main.ts
+import { TragamonedasDiamante } from "./TragamonedaDiamante";
 
 let casino = new Casino();
 let usuario : Usuario = new Usuario()
 let ruleta : Ruleta = new Ruleta()
 let raspadita : Raspadita = new Raspadita()
-let traClasico: tragamonedaClasico = new tragamonedaClasico();
-let traDiamante: tragamonedaDiamante = new tragamonedaDiamante();
+let traClasico: TragamonedasClasico = new TragamonedasClasico();
+let traDiamante: TragamonedasDiamante = new TragamonedasDiamante();
 
 casino.agregarUsuario(usuario);
 casino.agregarJuego(ruleta);

@@ -1,27 +1,24 @@
-import * as readlineSync from "readline-sync";
-import { JuegoCasino } from "./JuegoCasino";
-import { Juego } from "./Juego";
-import { Usuario } from "./Usuario";
-import { Casino } from "./Casino";
-import { tragamonedaPadre } from "./TragamonedaPadre";
+import { TragamonedasPadre } from "./TragamonedasPadre";
 
 
-export class tragamonedaDiamante extends tragamonedaPadre implements Juego{
+export class TragamonedasDiamante extends TragamonedasPadre{
+
+    //atributos
     protected minimoDeApuesta : number = 100;
     protected valorApuesta: number = this.minimoDeApuesta;
     protected simbolo = ["💎", "👑", "🐉"];
 
 // metodo para girar los carretes
-public girarCarretes(): string[] {
+/*public girarCarretes(): string[] {
     let carrete1 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
     let carrete2 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
     let carrete3 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
 
     return [carrete1, carrete2, carrete3];
-}
+}*/
 
 // menu del juego
-    public mostrarMenuJuego(): void{
+   /* public mostrarMenuJuego(): void{
         console.log("            Bienvenidos a tragamonedas Diamante!!            ")
         console.log("-------------------------------------")
         console.log("1 -     Ingrese uno para jugar:      ")
@@ -33,10 +30,10 @@ public girarCarretes(): string[] {
         console.log("0 - Volver")
         console.log("-------------------------------------")
         console.log("Creditos: " + this.getSaldoJuego() + " --- Apuesta: " + this.getValorApuesta());
-}
+}*/
 
 //metodo para seleccionar una opcion del menu
-public seleccionarOpcion(): void {
+/*public seleccionarOpcion(): void {
     let opcion: number = readlineSync.questionInt("Elige una opcion: "); //pedimos que elijan una opcion
     if(opcion !== 0){
     switch (opcion) {
@@ -60,15 +57,15 @@ public seleccionarOpcion(): void {
     else {
         console.log("--- Volviendo al menu principal ---");
     }
-}
+}*/
 
 // Función para verificar si hay una combinación ganadora
-public determinarApuesta(carrete: string[]): boolean {
+/*public determinarApuesta(carrete: string[]): boolean {
     return carrete[0] === carrete[1] && carrete[1] === carrete[2];
-}
+}*/
 
 // metodo apuesta  
-public jugarApuesta() : void {
+/*public jugarApuesta() : void {
     if (this.saldoJuego < this.valorApuesta) {
         console.error("--- No tienes suficiente saldo para esta apuesta ---");
         return;
@@ -80,10 +77,10 @@ public jugarApuesta() : void {
     } else {
         this.determinarGananciaPerdida(false,0); 
     }      
-}
+}*/
 
 //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
-public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
+/*public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
     if (ganoOPerdio === true) {
        console.log(`--- ¡Ganaste! ---`);
        this.saldoJuego -= this.valorApuesta;
@@ -92,14 +89,14 @@ public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): 
            console.log(`--- Perdiste ---`);
            this.saldoJuego -= this.valorApuesta;
            }
-}
+}*/
 
 // metodo principal para jugar al tragamonedas
-public jugar(usuario : Usuario): void {
+/*public jugar(usuario : Usuario): void {
        this.saldoJuego = usuario.getCreditos(); //obtenemos saldo de usuario 
        this.mostrarMenuJuego();
        this.seleccionarOpcion();
        usuario.setCreditos(this.saldoJuego);  // al terminar la sesion, le cargamos al usuario el dinero que tenga
 
-}
+}*/
 }
