@@ -1,11 +1,7 @@
 import * as readlineSync from "readline-sync"; 
 
 import { Juego } from "./Juego";
-import { Ruleta } from "./Ruleta";
 import { Usuario } from "./Usuario";
-//import { tragamonedaClasico } from "./TragamonedaClasico";
-import { tragamonedaPadre} from "./TragamonedaPadre";
-import { Raspadita } from "./Raspadita";
 
 export class Casino {
 

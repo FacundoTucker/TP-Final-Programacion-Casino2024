@@ -1,12 +1,7 @@
+import { TragamonedasPadre } from "./TragamonedasPadre";
 
-import * as readlineSync from "readline-sync";
-import { JuegoCasino } from "./JuegoCasino";
-import { Juego } from "./Juego";
-import { Usuario } from "./Usuario";
-import { Casino } from "./Casino";
-import { tragamonedaPadre } from "./TragamonedaPadre";
-
-export class tragamonedaClasico extends tragamonedaPadre implements Juego{
+export class TragamonedasClasico extends TragamonedasPadre{
+    
      //atributos
      protected minimoDeApuesta : number = 50;
      protected valorApuesta: number = this.minimoDeApuesta;
@@ -14,7 +9,7 @@ export class tragamonedaClasico extends tragamonedaPadre implements Juego{
    
 
 // metodo para girar los carretes
-public girarCarretes(): string[] {
+/*public girarCarretes(): string[] {
     let carrete1 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
     let carrete2 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
     let carrete3 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
@@ -23,10 +18,10 @@ public girarCarretes(): string[] {
 }
 
 // menu principal
-public mostrarMenuJuegoClasico(): void{
-    console.log("            Bienvenidos a tragamonedas Clasico!!            ");
+public mostrarMenuJuego(): void{
+    console.log("            Seccion Tragamonedas Clasico            ");
     console.log("-------------------------------------")
-    console.log("1 -     Ingrese uno para jugar:      ")
+    console.log("1 -     Jugar      ")
     console.log("-------------------------------------")
     console.log("           Mucha suerte!!            ")
     console.log("-------------------------------------")
@@ -56,7 +51,7 @@ public seleccionarOpcion(): void {
                 console.error("--- Opcion no valida. Intenta de nuevo ---");
         }
 
-        this.mostrarMenuJuegoClasico();
+        this.mostrarMenuJuego();
         this.seleccionarOpcion();
     }
     else {
@@ -86,7 +81,7 @@ public jugarApuesta() : void {
 
 
 //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
-public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
+/*public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
      if (ganoOPerdio === true) {
         console.log(`--- ¡Ganaste! ---`);
         this.saldoJuego -= this.valorApuesta;
@@ -95,13 +90,13 @@ public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): 
             console.log(`--- Perdiste ---`);
             this.saldoJuego -= this.valorApuesta;
             }
-}
+}*/
 
 // metodo principal para jugar al tragamonedas
-public jugar(usuario : Usuario): void {
+/*public jugar(usuario : Usuario): void {
         this.saldoJuego = usuario.getCreditos(); //obtenemos saldo de usuario 
-        this.mostrarMenuJuegoClasico();
+        this.mostrarMenuJuego();
         this.seleccionarOpcion();
         usuario.setCreditos(this.saldoJuego);  // al terminar la sesion, le cargamos al usuario el dinero que tenga
-    }
+    }*/
 }
