@@ -4,10 +4,10 @@ import { Juego } from "./Juego";
 import { Usuario } from "./Usuario";
 
 export class TragamonedasPadre extends Juego implements JuegoCasino{
-    
-    //atributos
+//atributos
     protected simbolo:string[];
 
+//menu
     public mostrarMenuJuego(): void{
         console.log("          Seccion Tragamonedas     ");
         console.log("-------------------------------------")
@@ -43,6 +43,7 @@ public seleccionarOpcion(): void {
     }
 }
 
+//Metodo para girar los carretes 
 public girarCarretes(): string[] {
     let carrete1 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
     let carrete2 = this.simbolo[Math.floor(Math.random() * this.simbolo.length)];
@@ -74,17 +75,18 @@ public jugarApuesta() : void {
 //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
 public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
     if (ganoOPerdio === true) {
-       console.log(`--- ¡Ganaste! ---`);
+       console.log(`--- ¡Ganaste! Has sacado 3 carretes iguales! ---`);
        this.saldoJuego -= this.valorApuesta;
        this.saldoJuego += this.valorApuesta * multiplicador;
        } else {
-           console.log(`--- Perdiste ---`);
+           console.log(`--- Lo siento, Perdiste!  ---`);
            this.saldoJuego -= this.valorApuesta;
            }
 }
 
 // metodo principal para jugar entrar al tragamoneda 
 public jugar(usuario : Usuario): void {
+    console.log("Entrando a tragamonedas...")
     this.saldoJuego = usuario.getCreditos(); //obtenemos saldo de usuario 
     this.mostrarMenuJuego();
     this.seleccionarOpcion();
