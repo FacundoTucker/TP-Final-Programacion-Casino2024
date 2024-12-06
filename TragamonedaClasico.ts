@@ -22,26 +22,6 @@ public girarCarretes(): string[] {
     return [carrete1, carrete2, carrete3];
 }
 
-// Función para verificar si hay una combinación ganadora
-public determinarApuesta(carrete: string[]): boolean {
-    return carrete[0] === carrete[1] && carrete[1] === carrete[2];
-}
-
-// metodo apuesta  
-public jugarApuesta() : void {
-    if (this.saldoJuego < this.valorApuesta) {
-        console.error("--- No tienes suficiente saldo para esta apuesta ---");
-        return;
-    }
-    let carrete = this.girarCarretes();
-    console.log(`Carrete 1: ${carrete[0]} | Carrete 2: ${carrete[1]} | Carrete 3: ${carrete[2]}`);
-    if (this.determinarApuesta(carrete)) {
-        this.determinarGananciaPerdida(true, 10);
-    } else {
-        this.determinarGananciaPerdida(false,0); 
-    }      
-}
-
 // menu principal
 public mostrarMenuJuegoClasico(): void{
     console.log("            Bienvenidos a tragamonedas Clasico!!            ");
@@ -84,6 +64,27 @@ public seleccionarOpcion(): void {
     }
 }
 
+// Función para verificar si hay una combinación ganadora
+public determinarApuesta(carrete: string[]): boolean {
+    return carrete[0] === carrete[1] && carrete[1] === carrete[2];
+}
+
+// metodo apuesta  
+public jugarApuesta() : void {
+    if (this.saldoJuego < this.valorApuesta) {
+        console.error("--- No tienes suficiente saldo para esta apuesta ---");
+        return;
+    }
+    let carrete = this.girarCarretes();
+    console.log(`Carrete 1: ${carrete[0]} | Carrete 2: ${carrete[1]} | Carrete 3: ${carrete[2]}`);
+    if (this.determinarApuesta(carrete)) {
+        this.determinarGananciaPerdida(true, 10);
+    } else {
+        this.determinarGananciaPerdida(false,0); 
+    }      
+}
+
+
 //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
 public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
      if (ganoOPerdio === true) {
@@ -99,7 +100,7 @@ public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): 
 // metodo principal para jugar al tragamonedas
 public jugar(usuario : Usuario): void {
         this.saldoJuego = usuario.getCreditos(); //obtenemos saldo de usuario 
-        this.mostrarMenuJuego();
+        this.mostrarMenuJuegoClasico();
         this.seleccionarOpcion();
         usuario.setCreditos(this.saldoJuego);  // al terminar la sesion, le cargamos al usuario el dinero que tenga
     }

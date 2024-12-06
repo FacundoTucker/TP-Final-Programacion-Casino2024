@@ -10,7 +10,6 @@ export class tragamonedaPadre extends Juego implements JuegoCasino{
     protected valorApuesta: number = this.minimoDeApuesta;
     protected simbolo:string[];
 
-
     public mostrarMenuJuego(): void{
         console.log("           Tragamonedas!!            ")
         console.log("-------------------------------------")

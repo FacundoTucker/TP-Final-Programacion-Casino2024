@@ -85,8 +85,8 @@ export class Casino {
         console.log("--------------------------");
         console.log("1 - Cargar créditos.");
         console.log("2 - Jugar Ruleta.");
-        console.log("3 - Jugar Tragamonedas");
-       // console.log("4 - Jugar Tragamonedas Diamantes.");
+        console.log("3 - Jugar Tragamonedas Clasico");
+        console.log("4 - Jugar Tragamonedas Diamantes.");
         console.log("5 - Jugar Raspadita");
         console.log("--------------------------");
         console.log("6 - Retirar créditos.");
