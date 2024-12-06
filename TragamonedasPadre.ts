@@ -4,8 +4,8 @@ import { Juego } from "./Juego";
 import { Usuario } from "./Usuario";
 
 export class TragamonedasPadre extends Juego implements JuegoCasino{
-    /*protected minimoDeApuesta : number;
-    protected valorApuesta: number;*/
+    
+    //atributos
     protected simbolo:string[];
 
     public mostrarMenuJuego(): void{
