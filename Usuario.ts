@@ -8,7 +8,7 @@ export class Usuario{
     }
 
     //setter
-    public setCreditos(nuevoCredito): void{
+    public setCreditos(nuevoCredito:number): void{
         this.creditos = nuevoCredito;
     }
 }
