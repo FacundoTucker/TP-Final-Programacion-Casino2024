@@ -30,6 +30,8 @@ export class Casino {
 
     //iniciar casino(consola)
     public iniciar() {
+        // Limpiar consola antes de mostrar el menú nuevamente
+        console.clear();
         this.mostrarMenuPrincipal();
         this.seleccion();
     }
@@ -77,7 +79,7 @@ export class Casino {
     //muestra del menu por consola
 
     public mostrarMenuPrincipal() {
-        console.log("       Casino <nombre>");
+        console.log("\x1b[48;5;235m\x1b[1m      Casino <nombre>");
         console.log("--------------------------");
         console.log("1 - Cargar créditos.");
         console.log("2 - Jugar Ruleta.");
