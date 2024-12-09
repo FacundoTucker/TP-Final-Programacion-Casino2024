@@ -5,7 +5,7 @@ import { Usuario } from "./Usuario";
 
 export class Ruleta extends Juego implements JuegoCasino{
     //atributos
-    protected minimoDeApuesta : number = 50
+    protected minimoDeApuesta : number = 60;
     protected valorApuesta: number = this.minimoDeApuesta;
     private numerosRojos : number[] = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
     private numerosNegros : number[] = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35];
@@ -36,18 +36,18 @@ export class Ruleta extends Juego implements JuegoCasino{
     //metodo que da un numero aleatorio
     public obtenerNumeroAleatorio() : number {
         let resultado : number = Math.floor(Math.random() * 37)
-        console.log("--- El numero es el " + resultado + " ---" )
+        console.log("--- El NUMERO es el " + resultado + " ---" );
         return resultado;
     }
 
     //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
     public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
         if (ganoOPerdio === true) {
-            console.log(`--- ¡Ganaste! ---`);
+            console.log("--- Has ACERTADO | Felicidades ---");
             this.saldoJuego -= this.valorApuesta;
             this.saldoJuego += this.valorApuesta * multiplicador;
         } else {
-            console.log(`--- Perdiste ---`);
+            console.log("--- Has PERDIDO | Mas suerte la proxima ---");
             this.saldoJuego -= this.valorApuesta;
         }
     }
@@ -177,6 +177,7 @@ export class Ruleta extends Juego implements JuegoCasino{
     //metodo abstracto jugar
     public jugar(usuario : Usuario): void {
 
+        console.log("--- Entrando a la RULETA ---");
         this.saldoJuego = usuario.getCreditos(); // obtenemos el saldo del usuario
         this.mostrarMenuJuego();
         this.seleccionarOpcion();
