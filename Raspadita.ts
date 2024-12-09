@@ -5,7 +5,7 @@ import { Usuario } from "./Usuario";
 
 export class Raspadita extends Juego implements JuegoCasino{
 
-    protected minimoDeApuesta : number = 50
+    protected minimoDeApuesta : number = 50;
     protected valorApuesta : number = this.minimoDeApuesta;
     
     //menu principal
@@ -50,12 +50,11 @@ export class Raspadita extends Juego implements JuegoCasino{
             resultado += caracteresPermitidos[indice];
         }
         console.log("\n\r\n\r          █ █ █ █ █ █ █ █ ")
-        let opcion:string="";
-        opcion=readlineSync.question("\n\r\n\rPresione cualquier tecla para raspar \n\r\n\r");
-        if (opcion!=""){
+        // let opcion:string=" ";
+        let opcion:string=readlineSync.question("\n\r\n\rPresione cualquier tecla para raspar \n\r\n\r");
         console.log("      ¡Esta es su raspadita!\n\r\n\r           ",resultado)
         this.contarCaracteres(resultado,caracterBuscado);
-        }
+        
     }
 
     //metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
@@ -72,12 +71,12 @@ export class Raspadita extends Juego implements JuegoCasino{
     
     //metodo para seleccionar una opcion del menu
     public seleccionarOpcion(): void {
-        if (this.saldoJuego < this.valorApuesta) {
+        if (this.saldoJuego < this.minimoDeApuesta) {
             console.error("\n\r\n\r--- No tienes suficiente saldo para esta Raspadita \n\r           Volviendo al menu principal ---\n\r\n\r");
             return;
         }
         let opcion: number = readlineSync.questionInt("\n\r\n\r Elige una opcion: \n\r\n\r");
-        if(opcion !== 0){
+        if(opcion !== 0 && this.saldoJuego >= this.valorApuesta){
             let caracteres:string='';
             switch (opcion) {                  
                 case 1:
@@ -106,9 +105,12 @@ export class Raspadita extends Juego implements JuegoCasino{
             this.mostrarMenuJuego();
             this.seleccionarOpcion();
 
+        } else if (opcion !== 0 && this.saldoJuego < this.valorApuesta) {
+            console.log("--- Para seguir jugando raspadita deberia o cargar mas credito \n\r o cambiar el valor de la apuesta (su credito es menor al valor de la apuesta)\n\r volviendo al menu principal ---");
         } else {
-            console.log("--- Volviendo al menu principal ---");
+            console.log("Volviendo al menu principal")
         }
+        
     }
     //atributos
     public jugar(usuario : Usuario): void {
