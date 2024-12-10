@@ -9,6 +9,9 @@ export class TragamonedasPadre extends Juego implements JuegoCasino{
 
 //menu
     public mostrarMenuJuego(): void{
+        readlineSync.question("\n\rPresione Enter para continuar...");
+        // Limpiar consola antes de mostrar el menú nuevamente
+        console.clear();
         console.log("          Seccion Tragamonedas     ");
         console.log("-------------------------------------")
         console.log("1 - Jugar  ");
@@ -34,7 +37,7 @@ public seleccionarOpcion(): void {
             default:
                 console.error("--- Opcion no valida. Intenta de nuevo ---");
         }
-
+       
         this.mostrarMenuJuego();
         this.seleccionarOpcion();
     }

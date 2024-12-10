@@ -50,8 +50,7 @@ export class Raspadita extends Juego implements JuegoCasino{
             resultado += caracteresPermitidos[indice];
         }
         console.log("\n\r\n\r          █ █ █ █ █ █ █ █ ")
-        // let opcion:string=" ";
-        let opcion:string=readlineSync.question("\n\r\n\rPresione cualquier tecla para raspar \n\r\n\r");
+        readlineSync.question("\n\r\n\rPresione enter para raspar \n\r\n\r");
         console.log("      ¡Esta es su raspadita!\n\r\n\r           ",resultado)
         this.contarCaracteres(resultado,caracterBuscado);
         
@@ -101,12 +100,20 @@ export class Raspadita extends Juego implements JuegoCasino{
                 default:
                     console.error("--- Opcion no valida. Intenta de nuevo ---");
             }
-
+            readlineSync.question("\n\rPresione Enter para continuar...");
+            // Limpiar consola antes de mostrar el menú nuevamente
+            console.clear();
             this.mostrarMenuJuego();
             this.seleccionarOpcion();
 
         } else if (opcion !== 0 && this.saldoJuego < this.valorApuesta) {
             console.log("--- Para seguir jugando raspadita deberia o cargar mas credito \n\r o cambiar el valor de la apuesta (su credito es menor al valor de la apuesta)\n\r volviendo al menu principal ---");
+            this.cambiarValorApuesta();
+            readlineSync.question("\n\rPresione Enter para continuar...");
+            // Limpiar consola antes de mostrar el menú nuevamente
+            console.clear();
+            this.mostrarMenuJuego();
+            this.seleccionarOpcion();        
         } else {
             console.log("Volviendo al menu principal")
         }

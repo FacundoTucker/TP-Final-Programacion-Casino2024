@@ -162,7 +162,9 @@ export class Ruleta extends Juego implements JuegoCasino{
                 default:
                     console.error("--- Opcion no valida. Intenta de nuevo ---");
             }
-
+            readlineSync.question("\n\rPresione Enter para continuar...");
+            // Limpiar consola antes de mostrar el menú nuevamente
+            console.clear();
             this.mostrarMenuJuego();
             this.seleccionarOpcion();
 
