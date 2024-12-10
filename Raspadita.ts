@@ -108,6 +108,12 @@ export class Raspadita extends Juego implements JuegoCasino{
 
         } else if (opcion !== 0 && this.saldoJuego < this.valorApuesta) {
             console.log("--- Para seguir jugando raspadita deberia o cargar mas credito \n\r o cambiar el valor de la apuesta (su credito es menor al valor de la apuesta)\n\r volviendo al menu principal ---");
+            this.cambiarValorApuesta();
+            readlineSync.question("\n\rPresione Enter para continuar...");
+            // Limpiar consola antes de mostrar el menú nuevamente
+            console.clear();
+            this.mostrarMenuJuego();
+            this.seleccionarOpcion();        
         } else {
             console.log("Volviendo al menu principal")
         }
