@@ -3,7 +3,7 @@ import { JuegoCasino } from "./JuegoCasino";
 import { Juego } from "./Juego";
 import { Usuario } from "./Usuario";
 
-export class TragamonedasPadre extends Juego implements JuegoCasino{
+export class TragamonedasPadre extends Juego{
 //atributos
     protected simbolo:string[];
 
@@ -55,37 +55,8 @@ public girarCarretes(): string[] {
     return [carrete1, carrete2, carrete3];
 }
 
-// Función para verificar si hay una combinación ganadora
-public determinarApuesta(carrete: string[]): boolean {
-    return carrete[0] === carrete[1] && carrete[1] === carrete[2];
-}
-
-// metodo apuesta  
-public jugarApuesta() : void {
-    if (this.saldoJuego < this.valorApuesta) {
-        console.error("--- No tienes suficiente saldo para esta apuesta ---");
-        return;
-    }
-    let carrete = this.girarCarretes();
-    console.log(`Carrete 1: ${carrete[0]} | Carrete 2: ${carrete[1]} | Carrete 3: ${carrete[2]}`);
-    if (this.determinarApuesta(carrete)) {
-        this.determinarGananciaPerdida(true, 10);
-    } else {
-        this.determinarGananciaPerdida(false,0); 
-    }      
-}
-
-//metodo que retorna si ganaste o perdiste y procesa las ganancias/perdidas
-public determinarGananciaPerdida(ganoOPerdio: boolean, multiplicador : number): void {
-    if (ganoOPerdio === true) {
-       console.log(`--- ¡Ganaste! Has sacado 3 carretes iguales! ---`);
-       this.saldoJuego -= this.valorApuesta;
-       this.saldoJuego += this.valorApuesta * multiplicador;
-       } else {
-           console.log(`--- Lo siento, Perdiste!  ---`);
-           this.saldoJuego -= this.valorApuesta;
-           }
-}
+// metodo apuesta que va a estar definido en las clases hijas
+public jugarApuesta() : void {}
 
 // metodo principal para jugar entrar al tragamoneda 
 public jugar(usuario : Usuario): void {
